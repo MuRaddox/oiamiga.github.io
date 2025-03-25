@@ -12,8 +12,8 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            padding-bottom: 70px; /* Espaço para o menu inferior */
-            font-size: 16px; /* Tamanho base ajustado para mobile */
+            padding-bottom: 70px;
+            font-size: 16px;
             min-height: 100vh;
             position: relative;
         }
@@ -27,7 +27,7 @@
         h1, h2, h3 {
             color: #ff69b4;
             text-align: center;
-            font-size: 1.5rem; /* Ajustado para mobile */
+            font-size: 1.5rem;
         }
         p {
             color: #666;
@@ -83,7 +83,7 @@
             margin-bottom: 12px;
         }
         #mapa {
-            height: 50vh; /* Ajustado para ser proporcional à tela */
+            height: 50vh;
             background-image: url('mapa.png');
             background-size: cover;
             background-position: center;
@@ -121,7 +121,7 @@
             display: block;
         }
         #mensagens, #respostas, #eventos, #dicas, #grupos, #desafios, #ideias, #favoritos, #notificacoes, #videoaulas, #campanhas, #desabafos, #feed {
-            height: 30vh; /* Ajustado para mobile */
+            height: 30vh;
             overflow-y: auto;
             border: 1px solid #e6e6fa;
             padding: 8px;
@@ -227,12 +227,25 @@
         #welcome .btn {
             margin: 8px 0;
         }
+        /* Estilo do botão de voltar */
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #ff69b4;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 1100;
+        }
+        .back-button:hover {
+            color: #ff1493;
+        }
 
         /* Media Queries para dispositivos móveis */
         @media (max-width: 576px) {
             body {
                 font-size: 14px;
-                padding-bottom: 60px; /* Ajuste para o menu inferior em telas menores */
+                padding-bottom: 60px;
             }
             h1, h2, h3 {
                 font-size: 1.2rem;
@@ -275,6 +288,11 @@
             .navbar-brand i {
                 font-size: 1rem;
             }
+            .back-button {
+                font-size: 1.2rem;
+                top: 8px;
+                left: 8px;
+            }
         }
     </style>
 </head>
@@ -292,6 +310,7 @@
     <!-- Tela de Cadastro -->
     <div id="register" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-user-plus"></i> Cadastro</h2>
             <p>Este app é exclusivo para mulheres. Por favor, preencha os dados abaixo.</p>
             <form>
@@ -335,6 +354,7 @@
     <!-- Tela de Mapa -->
     <div id="map" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-map"></i> Mapa</h2>
             <p>Veja mulheres próximas a você! Raio: <span id="raio">5km (Gratuito)</span></p>
             <div class="form-group">
@@ -361,6 +381,7 @@
     <!-- Tela de Perfil -->
     <div id="profile" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-user"></i> Perfil</h2>
             <div id="profile-foto" class="foto"></div>
             <p id="profile-nome"><strong>Nome:</strong> <span id="profile-nome-text"></span></p>
@@ -394,6 +415,7 @@
     <!-- Tela de Solicitação de Amizade -->
     <div id="friend-request" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-heart"></i> Solicitação de Amizade</h2>
             <button class="btn btn-primary"><i class="fas fa-heart"></i> Vamos ser amigas!</button>
             <button class="btn btn-primary" onclick="showTela('map')">Voltar ao Mapa</button>
@@ -403,6 +425,7 @@
     <!-- Tela de Denunciar Amiga -->
     <div id="report-friend" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-exclamation-triangle"></i> Denunciar Amiga</h2>
             <p>Descreva o motivo da denúncia. Sua identidade será mantida anônima.</p>
             <form>
@@ -419,6 +442,7 @@
     <!-- Tela de Chat -->
     <div id="chat" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-comments"></i> Chat</h2>
             <p id="chat-status">Você é uma usuária gratuita. Sua mensagem será enviada por e-mail.</p>
             <div id="mensagens">
@@ -438,6 +462,7 @@
     <!-- Tela de Comunidade -->
     <div id="community" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-users"></i> Comunidade</h2>
             <div class="submenu">
                 <div class="submenu-item" onclick="checkAccess('events')">Eventos Locais</div>
@@ -455,6 +480,7 @@
     <!-- Tela de Eventos Locais -->
     <div id="events" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-calendar-alt"></i> Eventos Locais</h2>
             <div id="eventos">
                 <div class="evento">
@@ -477,6 +503,7 @@
     <!-- Tela de Grupos de Interesse -->
     <div id="groups" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-users"></i> Grupos de Interesse</h2>
             <div id="grupos">
                 <div class="grupo">
@@ -499,6 +526,7 @@
     <!-- Tela de Desafios Mensais -->
     <div id="challenges" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-trophy"></i> Desafios Mensais</h2>
             <div id="desafios">
                 <div class="desafio">
@@ -521,6 +549,7 @@
     <!-- Tela de Ideias de Passeios -->
     <div id="outing-ideas" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-hiking"></i> Ideias de Passeios</h2>
             <div id="ideias">
                 <div class="ideia">
@@ -543,6 +572,7 @@
     <!-- Tela de Mensagens de Viagem -->
     <div id="travel" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-plane"></i> Mensagens de Viagem</h2>
             <form>
                 <div class="form-group">
@@ -561,6 +591,7 @@
     <!-- Tela de Sala de Desabafo -->
     <div id="confession-room" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-heart-broken"></i> Sala de Desabafo</h2>
             <p>Desabafe e peça conselhos para mulheres próximas (raio: <span id="raio-desabafo">5km</span>).</p>
             <form>
@@ -589,6 +620,7 @@
     <!-- Tela de Feed (Mini Rede Social) -->
     <div id="feed" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-rss"></i> Feed</h2>
             <p>Compartilhe momentos em um ambiente seguro e controlado.</p>
             <form>
@@ -615,6 +647,7 @@
     <!-- Tela de Marcar Encontro -->
     <div id="schedule-meetup" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-handshake"></i> Marcar Encontro</h2>
             <p>Crie um evento e convide suas amigas! Elas podem convidar outras amigas (avaliação mínima: 3 estrelas).</p>
             <form>
@@ -647,6 +680,7 @@
     <!-- Tela de Mais -->
     <div id="more" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-ellipsis-h"></i> Mais</h2>
             <div class="submenu">
                 <div class="submenu-item" onclick="checkAccess('recommend')">Indicações</div>
@@ -666,6 +700,7 @@
     <!-- Tela de Indicação de Profissionais -->
     <div id="recommend" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-star"></i> Indicação de Profissionais</h2>
             <form>
                 <div class="form-group">
@@ -719,6 +754,7 @@
     <!-- Tela de Dicas de Beleza -->
     <div id="beauty-tips" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-magic"></i> Dicas de Beleza</h2>
             <div id="dicas">
                 <div class="dica">
@@ -741,6 +777,7 @@
     <!-- Tela de Videoaulas -->
     <div id="video-tutorials" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-video"></i> Videoaulas</h2>
             <div id="videoaulas">
                 <div class="videoaula">
@@ -756,6 +793,7 @@
     <!-- Tela de Campanhas -->
     <div id="campaigns" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-bullhorn"></i> Campanhas</h2>
             <div id="campanhas">
                 <div class="campanha">
@@ -768,6 +806,7 @@
     <!-- Tela de Filtros -->
     <div id="filters" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-filter"></i> Filtros</h2>
             <form>
                 <div class="form-group">
@@ -798,6 +837,7 @@
     <!-- Tela de Favoritos -->
     <div id="favorites" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-heart"></i> Favoritos</h2>
             <div id="favoritos">
                 <div class="favorito">
@@ -813,6 +853,7 @@
     <!-- Tela de Notificações -->
     <div id="notifications" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-bell"></i> Notificações</h2>
             <div id="notificacoes">
                 <div class="notificacao">
@@ -828,6 +869,7 @@
     <!-- Tela de Configurações -->
     <div id="settings" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-cog"></i> Configurações</h2>
             <form>
                 <div class="form-group">
@@ -852,6 +894,7 @@
     <!-- Tela de Sessão Rápida -->
     <div id="quick-session" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-clock"></i> Sessão Rápida</h2>
             <p>Agende uma consulta de emergência com uma profissional.</p>
             <form>
@@ -876,6 +919,7 @@
     <!-- Tela de Salva Vidas -->
     <div id="lifesaver" class="tela">
         <div class="container">
+            <i class="fas fa-arrow-left back-button" onclick="goBack()"></i>
             <h2><i class="fas fa-life-ring"></i> Salva Vidas</h2>
             <p>Em caso de emergência, peça ajuda às amigas próximas (raio: <span id="raio-lifesaver">5km</span>).</p>
             <button class="btn btn-danger" onclick="sendLifesaverAlert()">Pedir Ajuda Agora</button>
@@ -896,6 +940,7 @@
         let currentRaio = 5;
         let currentProfileId = 1;
         let hasEntered = false;
+        let navigationHistory = ['welcome']; // Histórico de navegação, começa com a tela inicial
 
         const profiles = {
             1: {
@@ -973,12 +1018,20 @@
         };
 
         function showTela(telaId) {
+            // Adiciona a tela atual ao histórico antes de mudar
+            const currentTela = document.querySelector('.tela.active')?.id;
+            if (currentTela && currentTela !== telaId) {
+                navigationHistory.push(currentTela);
+            }
+
+            // Esconde todas as telas e mostra a nova
             document.querySelectorAll('.tela').forEach(tela => {
                 tela.classList.remove('active');
             });
             document.getElementById(telaId).classList.add('active');
             window.scrollTo(0, 0);
 
+            // Controla a visibilidade do menu inferior
             const navbar = document.getElementById('navbar');
             if (telaId === 'welcome' || telaId === 'register') {
                 navbar.style.display = 'none';
@@ -990,6 +1043,15 @@
 
             document.getElementById('raio-desabafo').innerText = `${currentRaio}km`;
             document.getElementById('raio-lifesaver').innerText = `${currentRaio}km`;
+        }
+
+        function goBack() {
+            // Remove a tela atual do histórico
+            navigationHistory.pop();
+            // Pega a última tela do histórico
+            const previousTela = navigationHistory.length > 0 ? navigationHistory[navigationHistory.length - 1] : 'welcome';
+            // Volta para a tela anterior
+            showTela(previousTela);
         }
 
         function showProfile(profileId) {
