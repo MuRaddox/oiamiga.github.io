@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Oi Amiga</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            padding-bottom: 70px; /* Espaço para o menu inferior */
+            font-size: 16px; /* Tamanho base ajustado para mobile */
+            min-height: 100vh;
+            position: relative;
+        }
+        .container {
+            max-width: 100%;
+            width: 90%;
+            margin: 0 auto;
+            padding: 15px;
+            position: relative;
+        }
+        h1, h2, h3 {
+            color: #ff69b4;
+            text-align: center;
+            font-size: 1.5rem; /* Ajustado para mobile */
+        }
+        p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .btn {
+            font-size: 0.9rem;
+            padding: 8px;
+            border-radius: 5px;
+        }
+        .btn-primary {
+            background-color: #ff69b4;
+            border-color: #ff69b4;
+            width: 100%;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #ff1493;
+            border-color: #ff1493;
+        }
+        .btn-entrar {
+            background-color: #ff69b4;
+            border-color: #ff69b4;
+            color: white;
+            width: 80%;
+            margin-bottom: 10px;
+        }
+        .btn-entrar:hover {
+            background-color: #ff1493;
+            border-color: #ff1493;
+        }
+        .btn-cadastrar {
+            background-color: #9370db;
+            border-color: #9370db;
+            color: white;
+            width: 80%;
+        }
+        .btn-cadastrar:hover {
+            background-color: #7a5cb8;
+            border-color: #7a5cb8;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+            width: 100%;
+            color: white;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #c82333;
+        }
+        .form-group {
+            margin-bottom: 12px;
+        }
+        #mapa {
+            height: 50vh; /* Ajustado para ser proporcional à tela */
+            background-image: url('mapa.png');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            border: 2px solid #ff69b4;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .mulher-icon {
+            position: absolute;
+            color: #ff69b4;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .amiga-icon {
+            position: absolute;
+            color: #800080;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        .mulher1 { top: 15%; left: 10%; }
+        .mulher2 { top: 40%; left: 30%; }
+        .mulher3 { top: 70%; left: 50%; }
+        .mulher4 { top: 30%; left: 70%; }
+        .mulher5 { top: 50%; left: 15%; }
+        .mulher6 { top: 10%; left: 40%; }
+        .amiga1 { top: 20%; left: 55%; }
+        .amiga2 { top: 60%; left: 20%; }
+        .foto {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #e6e6fa;
+            margin: 0 auto;
+            display: block;
+        }
+        #mensagens, #respostas, #eventos, #dicas, #grupos, #desafios, #ideias, #favoritos, #notificacoes, #videoaulas, #campanhas, #desabafos, #feed {
+            height: 30vh; /* Ajustado para mobile */
+            overflow-y: auto;
+            border: 1px solid #e6e6fa;
+            padding: 8px;
+            background-color: #fff;
+            font-size: 0.85rem;
+        }
+        .comentario, .evento, .dica, .grupo, .desafio, .ideia, .favorito, .notificacao, .videoaula, .campanha, .desabafo, .post {
+            border-bottom: 1px solid #e6e6fa;
+            padding: 8px 0;
+        }
+        nav {
+            max-width: 100%;
+            width: 100%;
+            margin: 0 auto;
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: #fff;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            color: #ff69b4 !important;
+            font-size: 0.75rem;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 5px;
+            flex: 1;
+        }
+        .navbar-brand i {
+            font-size: 1.2rem;
+        }
+        .navbar-brand:hover {
+            color: #ff1493 !important;
+        }
+        .tela {
+            display: none;
+        }
+        .tela.active {
+            display: block;
+        }
+        .submenu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin-top: 15px;
+        }
+        .submenu-item {
+            background-color: #fff;
+            border: 1px solid #ff69b4;
+            border-radius: 8px;
+            padding: 8px;
+            width: 48%;
+            text-align: center;
+            margin-bottom: 10px;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        .submenu-item:hover {
+            background-color: #ff69b4;
+            color: white;
+        }
+        .rating {
+            display: flex;
+            justify-content: center;
+            margin: 8px 0;
+            flex-direction: column;
+            align-items: center;
+        }
+        .rating i {
+            font-size: 1.2rem;
+            color: #ccc;
+            cursor: pointer;
+            margin: 0 3px;
+        }
+        .rating i.filled {
+            color: #ff69b4;
+        }
+        .rating-average {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        .low-rating-message {
+            font-size: 0.8rem;
+            color: #dc3545;
+            text-align: center;
+            margin-top: 8px;
+        }
+        /* Centralizar botões na tela de boas-vindas */
+        #welcome .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        #welcome .btn {
+            margin: 8px 0;
+        }
+
+        /* Media Queries para dispositivos móveis */
+        @media (max-width: 576px) {
+            body {
+                font-size: 14px;
+                padding-bottom: 60px; /* Ajuste para o menu inferior em telas menores */
+            }
+            h1, h2, h3 {
+                font-size: 1.2rem;
+            }
+            p {
+                font-size: 0.85rem;
+            }
+            .btn {
+                font-size: 0.85rem;
+                padding: 6px;
+            }
+            .btn-entrar, .btn-cadastrar {
+                width: 90%;
+            }
+            .container {
+                padding: 10px;
+                width: 95%;
+            }
+            #mapa {
+                height: 40vh;
+            }
+            .mulher-icon, .amiga-icon {
+                font-size: 1.2rem;
+            }
+            .foto {
+                width: 60px;
+                height: 60px;
+            }
+            #mensagens, #respostas, #eventos, #dicas, #grupos, #desafios, #ideias, #favoritos, #notificacoes, #videoaulas, #campanhas, #desabafos, #feed {
+                height: 25vh;
+                font-size: 0.8rem;
+            }
+            .submenu-item {
+                width: 100%;
+                font-size: 0.8rem;
+            }
+            .navbar-brand {
+                font-size: 0.65rem;
+            }
+            .navbar-brand i {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Tela de Boas-Vindas -->
+    <div id="welcome" class="tela active">
+        <div class="container">
+            <h1><i class="fas fa-heart"></i> Oi Amiga!</h1>
+            <p>Um espaço seguro para mulheres se conectarem, fazerem amigas e compartilharem experiências incríveis!</p>
+            <button class="btn btn-entrar" onclick="showTela('map')">Entrar</button>
+            <button class="btn btn-cadastrar" onclick="showTela('register')">Cadastrar</button>
+        </div>
+    </div>
+
+    <!-- Tela de Cadastro -->
+    <div id="register" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-user-plus"></i> Cadastro</h2>
+            <p>Este app é exclusivo para mulheres. Por favor, preencha os dados abaixo.</p>
+            <form>
+                <div class="form-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control" id="nome" placeholder="Digite seu nome">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Digite seu email">
+                </div>
+                <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
+                </div>
+                <div class="form-group">
+                    <label for="foto">Foto</label>
+                    <input type="file" class="form-control" id="foto">
+                </div>
+                <div class="form-group">
+                    <label for="prova-vida">Prova de Vida (Confirmação de Gênero)</label>
+                    <input type="file" class="form-control" id="prova-vida">
+                </div>
+                <div class="form-group">
+                    <label for="interesses">Interesses</label>
+                    <textarea class="form-control" id="interesses" rows="2" placeholder="Ex: Leitura, Cinema"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="hobbies">Hobbies</label>
+                    <textarea class="form-control" id="hobbies" rows="2" placeholder="Ex: Pintura, Dança"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="preza-amizade">O que preza em uma amizade</label>
+                    <textarea class="form-control" id="preza-amizade" rows="2" placeholder="Ex: Lealdade, Diversão"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" onclick="showTela('map')">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tela de Mapa -->
+    <div id="map" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-map"></i> Mapa</h2>
+            <p>Veja mulheres próximas a você! Raio: <span id="raio">5km (Gratuito)</span></p>
+            <div class="form-group">
+                <label for="raio-select">Ajustar Raio (Premium)</label>
+                <select class="form-control" id="raio-select" onchange="updateRaio()">
+                    <option value="5">5km (Gratuito)</option>
+                    <option value="10">10km (Premium)</option>
+                    <option value="20">20km (Premium)</option>
+                </select>
+            </div>
+            <div id="mapa">
+                <i class="fas fa-female mulher-icon mulher1" onclick="showProfile(1)"></i>
+                <i class="fas fa-female mulher-icon mulher2" onclick="showProfile(2)"></i>
+                <i class="fas fa-female mulher-icon mulher3" onclick="showProfile(3)"></i>
+                <i class="fas fa-female mulher-icon mulher4" onclick="showProfile(4)"></i>
+                <i class="fas fa-female mulher-icon mulher5" onclick="showProfile(5)"></i>
+                <i class="fas fa-female mulher-icon mulher6" onclick="showProfile(6)"></i>
+                <i class="fas fa-hand-paper amiga-icon amiga1" onclick="showProfile(7)"></i>
+                <i class="fas fa-hand-paper amiga-icon amiga2" onclick="showProfile(8)"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela de Perfil -->
+    <div id="profile" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-user"></i> Perfil</h2>
+            <div id="profile-foto" class="foto"></div>
+            <p id="profile-nome"><strong>Nome:</strong> <span id="profile-nome-text"></span></p>
+            <p><strong>Idade:</strong> <span id="profile-idade"></span></p>
+            <p><strong>Interesses:</strong> <span id="profile-interesses"></span></p>
+            <p id="profile-hobbies"><strong>Hobbies:</strong> <span id="profile-hobbies-text"></span></p>
+            <p id="profile-preza"><strong>O que preza em uma amizade:</strong> <span id="profile-preza-text"></span></p>
+            <div class="rating-average">
+                <p><strong>Avaliação Média (Visível apenas para outras mulheres):</strong></p>
+                <span id="rating-average-text"></span>
+            </div>
+            <div id="low-rating-message" class="low-rating-message" style="display: none;">
+                Esta amiga tem uma avaliação inferior a 3. Ela possui acesso limitado e precisa melhorar sua avaliação para desbloquear mais funcionalidades.
+            </div>
+            <div class="rating">
+                <p>Avalie esta amiga (anônimo):</p>
+                <div>
+                    <i class="fas fa-lipstick" onclick="rateFriend(1)"></i>
+                    <i class="fas fa-lipstick" onclick="rateFriend(2)"></i>
+                    <i class="fas fa-lipstick" onclick="rateFriend(3)"></i>
+                    <i class="fas fa-lipstick" onclick="rateFriend(4)"></i>
+                    <i class="fas fa-lipstick" onclick="rateFriend(5)"></i>
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="showTela('friend-request')">Enviar Solicitação de Amizade</button>
+            <button class="btn btn-danger" onclick="showTela('report-friend')">Denunciar Amiga</button>
+            <button class="btn btn-primary" onclick="showTela('map')">Voltar ao Mapa</button>
+        </div>
+    </div>
+
+    <!-- Tela de Solicitação de Amizade -->
+    <div id="friend-request" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-heart"></i> Solicitação de Amizade</h2>
+            <button class="btn btn-primary"><i class="fas fa-heart"></i> Vamos ser amigas!</button>
+            <button class="btn btn-primary" onclick="showTela('map')">Voltar ao Mapa</button>
+        </div>
+    </div>
+
+    <!-- Tela de Denunciar Amiga -->
+    <div id="report-friend" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-exclamation-triangle"></i> Denunciar Amiga</h2>
+            <p>Descreva o motivo da denúncia. Sua identidade será mantida anônima.</p>
+            <form>
+                <div class="form-group">
+                    <label for="motivo-denuncia">Motivo da Denúncia</label>
+                    <textarea class="form-control" id="motivo-denuncia" rows="3" placeholder="Ex: Comportamento tóxico, falta de respeito"></textarea>
+                </div>
+                <button type="submit" class="btn btn-danger" onclick="submitReport()">Enviar Denúncia</button>
+            </form>
+            <button class="btn btn-primary" onclick="showTela('map')">Voltar ao Mapa</button>
+        </div>
+    </div>
+
+    <!-- Tela de Chat -->
+    <div id="chat" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-comments"></i> Chat</h2>
+            <p id="chat-status">Você é uma usuária gratuita. Sua mensagem será enviada por e-mail.</p>
+            <div id="mensagens">
+                <p>Maria: Oi, tudo bem?</p>
+                <p>Você: Oi, Maria! Tudo ótimo por aqui!</p>
+            </div>
+            <form>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="mensagem" placeholder="Digite sua mensagem">
+                </div>
+                <button type="submit" class="btn btn-primary" onclick="sendMessage()">Enviar</button>
+            </form>
+            <button class="btn btn-primary" onclick="upgradeToPremium()">Tornar-se Premium para Chat Direto</button>
+        </div>
+    </div>
+
+    <!-- Tela de Comunidade -->
+    <div id="community" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-users"></i> Comunidade</h2>
+            <div class="submenu">
+                <div class="submenu-item" onclick="checkAccess('events')">Eventos Locais</div>
+                <div class="submenu-item" onclick="checkAccess('groups')">Grupos de Interesse</div>
+                <div class="submenu-item" onclick="checkAccess('challenges')">Desafios Mensais</div>
+                <div class="submenu-item" onclick="checkAccess('outing-ideas')">Ideias de Passeios</div>
+                <div class="submenu-item" onclick="checkAccess('travel')">Mensagens de Viagem</div>
+                <div class="submenu-item" onclick="checkAccess('confession-room')">Sala de Desabafo</div>
+                <div class="submenu-item" onclick="checkAccess('feed')">Feed</div>
+                <div class="submenu-item" onclick="checkAccess('schedule-meetup')">Marcar Encontro</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela de Eventos Locais -->
+    <div id="events" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-calendar-alt"></i> Eventos Locais</h2>
+            <div id="eventos">
+                <div class="evento">
+                    <p><strong>Feira de Artesanato</strong> - 10/04 às 14h</p>
+                </div>
+                <div class="evento">
+                    <p><strong>Noite de Cinema</strong> - 12/04 às 19h</p>
+                </div>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="novo-evento">Divulgar Evento</label>
+                    <textarea class="form-control" id="novo-evento" rows="2" placeholder="Ex: Feira de Livros - 15/04 às 10h"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Divulgar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tela de Grupos de Interesse -->
+    <div id="groups" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-users"></i> Grupos de Interesse</h2>
+            <div id="grupos">
+                <div class="grupo">
+                    <p><strong>Clube do Livro</strong> - Discussões mensais</p>
+                </div>
+                <div class="grupo">
+                    <p><strong>Amigas Fitness</strong> - Treinos semanais</p>
+                </div>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="novo-grupo">Criar Grupo</label>
+                    <input type="text" class="form-control" id="novo-grupo" placeholder="Ex: Clube de Culinária">
+                </div>
+                <button type="submit" class="btn btn-primary">Criar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tela de Desafios Mensais -->
+    <div id="challenges" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-trophy"></i> Desafios Mensais</h2>
+            <div id="desafios">
+                <div class="desafio">
+                    <p><strong>Desafio de Leitura:</strong> Leia 2 livros este mês! <span class="badge badge-success">Concluído</span></p>
+                </div>
+                <div class="desafio">
+                    <p><strong>Desafio de Bem-Estar:</strong> Medite 10 minutos por dia.</p>
+                </div>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="novo-desafio">Sugerir Desafio</label>
+                    <input type="text" class="form-control" id="novo-desafio" placeholder="Ex: Caminhar 5km por semana">
+                </div>
+                <button type="submit" class="btn btn-primary">Sugerir</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tela de Ideias de Passeios -->
+    <div id="outing-ideas" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-hiking"></i> Ideias de Passeios</h2>
+            <div id="ideias">
+                <div class="ideia">
+                    <p><strong>Parque das Flores:</strong> Perfeito para um piquenique!</p>
+                </div>
+                <div class="ideia">
+                    <p><strong>Museu da Cidade:</strong> Exposição nova este mês.</p>
+                </div>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="nova-ideia">Sugerir Passeio</label>
+                    <textarea class="form-control" id="nova-ideia" rows="2" placeholder="Ex: Visitar o jardim botânico"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Sugerir</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tela de Mensagens de Viagem -->
+    <div id="travel" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-plane"></i> Mensagens de Viagem</h2>
+            <form>
+                <div class="form-group">
+                    <label for="mensagem-viagem">Estou em uma cidade a passeio e estou buscando...</label>
+                    <textarea class="form-control" id="mensagem-viagem" rows="3" placeholder="Ex: dicas de passeios"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+            </form>
+            <h3>Respostas</h3>
+            <div id="respostas">
+                <p>Ana: Bem-vinda! Recomendo o parque central!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela de Sala de Desabafo -->
+    <div id="confession-room" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-heart-broken"></i> Sala de Desabafo</h2>
+            <p>Desabafe e peça conselhos para mulheres próximas (raio: <span id="raio-desabafo">5km</span>).</p>
+            <form>
+                <div class="form-group">
+                    <label for="desabafo">Seu Desabafo</label>
+                    <textarea class="form-control" id="desabafo" rows="3" placeholder="Escreva aqui seu desabafo ou pedido de conselho"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="anonimo">Postar Anonimamente (Premium)</label>
+                    <input type="checkbox" id="anonimo" onchange="checkAnonimo()">
+                </div>
+                <button type="submit" class="btn btn-primary" onclick="postConfession()">Enviar Desabafo</button>
+            </form>
+            <h3>Desabafos</h3>
+            <div id="desabafos">
+                <div class="desabafo">
+                    <p><strong>Anônima:</strong> Estou me sentindo muito sozinha ultimamente...</p>
+                </div>
+                <div class="desabafo">
+                    <p><strong>Clara:</strong> Preciso de conselhos sobre como lidar com stress no trabalho.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela de Feed (Mini Rede Social) -->
+    <div id="feed" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-rss"></i> Feed</h2>
+            <p>Compartilhe momentos em um ambiente seguro e controlado.</p>
+            <form>
+                <div class="form-group">
+                    <label for="novo-post">Novo Post</label>
+                    <textarea class="form-control" id="novo-post" rows="2" placeholder="Escreva algo ou compartilhe uma foto"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" onclick="postToFeed()">Postar</button>
+            </form>
+            <h3>Posts</h3>
+            <div id="feed">
+                <div class="post">
+                    <p><strong>Ana:</strong> Hoje fiz um bolo delicioso! 🍰 (Conteúdo revisado)</p>
+                    <p><i class="fas fa-heart"></i> 5 curtidas | <i class="fas fa-comment"></i> 2 comentários</p>
+                </div>
+                <div class="post">
+                    <p><strong>Joana:</strong> Passeio incrível no parque! (Conteúdo revisado)</p>
+                    <p><i class="fas fa-heart"></i> 3 curtidas | <i class="fas fa-comment"></i> 1 comentário</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela de Marcar Encontro -->
+    <div id="schedule-meetup" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-handshake"></i> Marcar Encontro</h2>
+            <p>Crie um evento e convide suas amigas! Elas podem convidar outras amigas (avaliação mínima: 3 estrelas).</p>
+            <form>
+                <div class="form-group">
+                    <label for="nome-evento">Nome do Evento</label>
+                    <input type="text" class="form-control" id="nome-evento" placeholder="Ex: Café da Tarde">
+                </div>
+                <div class="form-group">
+                    <label for="data-evento">Data e Hora</label>
+                    <input type="datetime-local" class="form-control" id="data-evento">
+                </div>
+                <div class="form-group">
+                    <label for="local-evento">Local</label>
+                    <input type="text" class="form-control" id="local-evento" placeholder="Ex: Cafeteria Central">
+                </div>
+                <div class="form-group">
+                    <label for="convidadas">Convidar Amigas</label>
+                    <select class="form-control" id="convidadas" multiple>
+                        <option>Ana</option>
+                        <option>Clara</option>
+                        <option>Joana</option>
+                        <option>Maria</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" onclick="scheduleMeetup()">Criar Encontro</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tela de Mais -->
+    <div id="more" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-ellipsis-h"></i> Mais</h2>
+            <div class="submenu">
+                <div class="submenu-item" onclick="checkAccess('recommend')">Indicações</div>
+                <div class="submenu-item" onclick="checkAccess('beauty-tips')">Dicas de Beleza</div>
+                <div class="submenu-item" onclick="checkAccess('video-tutorials')">Videoaulas</div>
+                <div class="submenu-item" onclick="checkAccess('campaigns')">Campanhas</div>
+                <div class="submenu-item" onclick="checkAccess('filters')">Filtros</div>
+                <div class="submenu-item" onclick="checkAccess('favorites')">Favoritos</div>
+                <div class="submenu-item" onclick="checkAccess('notifications')">Notificações</div>
+                <div class="submenu-item" onclick="checkAccess('settings')">Configurações</div>
+                <div class="submenu-item" onclick="checkAccess('quick-session')">Sessão Rápida</div>
+                <div class="submenu-item" onclick="checkAccess('lifesaver')">Salva Vidas</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela de Indicação de Profissionais -->
+    <div id="recommend" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-star"></i> Indicação de Profissionais</h2>
+            <form>
+                <div class="form-group">
+                    <label for="nome-profissional">Nome do Profissional</label>
+                    <input type="text" class="form-control" id="nome-profissional" placeholder="Ex: Ana Silva">
+                </div>
+                <div class="form-group">
+                    <label for="especialidade">Especialidade</label>
+                    <select class="form-control" id="especialidade">
+                        <option>Manicure</option>
+                        <option>Designer de Sobrancelhas</option>
+                        <option>Cabeleireira</option>
+                        <option>Esteticista</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="preco">Preço</label>
+                    <input type="text" class="form-control" id="preco" placeholder="Ex: R$50,00">
+                </div>
+                <div class="form-group">
+                    <label for="avaliacao">Avaliação</label>
+                    <select class="form-control" id="avaliacao">
+                        <option>1 Estrela</option>
+                        <option>2 Estrelas</option>
+                        <option>3 Estrelas</option>
+                        <option>4 Estrelas</option>
+                        <option>5 Estrelas</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Indicar Profissional</button>
+            </form>
+            <h3>Comentários</h3>
+            <div id="comentarios">
+                <div class="comentario">
+                    <p><strong>Maria:</strong> Excelente profissional, super recomendo!</p>
+                </div>
+                <div class="comentario">
+                    <p><strong>Ana:</strong> Ótimo atendimento e preço justo.</p>
+                </div>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="novo-comentario">Adicionar Comentário</label>
+                    <textarea class="form-control" id="novo-comentario" rows="2" placeholder="Escreva seu comentário"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar Comentário</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tela de Dicas de Beleza -->
+    <div id="beauty-tips" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-magic"></i> Dicas de Beleza</h2>
+            <div id="dicas">
+                <div class="dica">
+                    <p><strong>Clara:</strong> Use óleo de coco para hidratar o cabelo!</p>
+                </div>
+                <div class="dica">
+                    <p><strong>Joana:</strong> Máscara de argila verde é ótima para a pele oleosa.</p>
+                </div>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="nova-dica">Compartilhar Dica</label>
+                    <textarea class="form-control" id="nova-dica" rows="2" placeholder="Ex: Use protetor solar diariamente!"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Compartilhar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tela de Videoaulas -->
+    <div id="video-tutorials" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-video"></i> Videoaulas</h2>
+            <div id="videoaulas">
+                <div class="videoaula">
+                    <p><strong>Como fazer um bolo simples</strong> - 10min</p>
+                </div>
+                <div class="videoaula">
+                    <p><strong>Maquiagem para o dia a dia</strong> - 15min</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela de Campanhas -->
+    <div id="campaigns" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-bullhorn"></i> Campanhas</h2>
+            <div id="campanhas">
+                <div class="campanha">
+                    <p><strong>Mês da Amizade:</strong> Convide 3 amigas e ganhe um badge!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela de Filtros -->
+    <div id="filters" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-filter"></i> Filtros</h2>
+            <form>
+                <div class="form-group">
+                    <label for="idade">Idade</label>
+                    <select class="form-control" id="idade">
+                        <option>18-25</option>
+                        <option>26-35</option>
+                        <option>36-45</option>
+                        <option>46+</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="hobbies">Hobbies</label>
+                    <select class="form-control" id="hobbies">
+                        <option>Leitura</option>
+                        <option>Cinema</option>
+                        <option>Viagens</option>
+                        <option>Pintura</option>
+                        <option>Dança</option>
+                        <option>Culinária</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Aplicar Filtros</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tela de Favoritos -->
+    <div id="favorites" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-heart"></i> Favoritos</h2>
+            <div id="favoritos">
+                <div class="favorito">
+                    <p><strong>Amiga:</strong> Ana Clara</p>
+                </div>
+                <div class="favorito">
+                    <p><strong>Evento:</strong> Feira de Artesanato</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela de Notificações -->
+    <div id="notifications" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-bell"></i> Notificações</h2>
+            <div id="notificacoes">
+                <div class="notificacao">
+                    <p><strong>Nova Amiga:</strong> Joana aceitou sua solicitação!</p>
+                </div>
+                <div class="notificacao">
+                    <p><strong>Evento:</strong> Feira de Artesanato amanhã!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela de Configurações -->
+    <div id="settings" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-cog"></i> Configurações</h2>
+            <form>
+                <div class="form-group">
+                    <label for="notificacoes-config">Notificações</label>
+                    <select class="form-control" id="notificacoes-config">
+                        <option>Ativadas</option>
+                        <option>Desativadas</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="privacidade">Privacidade</label>
+                    <select class="form-control" id="privacidade">
+                        <option>Público</option>
+                        <option>Somente Amigas</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Salvar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tela de Sessão Rápida -->
+    <div id="quick-session" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-clock"></i> Sessão Rápida</h2>
+            <p>Agende uma consulta de emergência com uma profissional.</p>
+            <form>
+                <div class="form-group">
+                    <label for="tipo-profissional">Tipo de Profissional</label>
+                    <select class="form-control" id="tipo-profissional">
+                        <option>Psicóloga</option>
+                        <option>Psicanalista</option>
+                        <option>Empreendedora</option>
+                        <option>Coach</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="necessidade">Descreva sua Necessidade</label>
+                    <textarea class="form-control" id="necessidade" rows="3" placeholder="Ex: Preciso de ajuda para lidar com ansiedade"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" onclick="scheduleSession()">Agendar Sessão</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tela de Salva Vidas -->
+    <div id="lifesaver" class="tela">
+        <div class="container">
+            <h2><i class="fas fa-life-ring"></i> Salva Vidas</h2>
+            <p>Em caso de emergência, peça ajuda às amigas próximas (raio: <span id="raio-lifesaver">5km</span>).</p>
+            <button class="btn btn-danger" onclick="sendLifesaverAlert()">Pedir Ajuda Agora</button>
+        </div>
+    </div>
+
+    <!-- Menu de Navegação -->
+    <nav id="navbar" class="navbar navbar-light bg-light">
+        <a class="navbar-brand" onclick="showTela('map')"><i class="fas fa-map"></i> Mapa</a>
+        <a class="navbar-brand" onclick="checkAccess('chat')"><i class="fas fa-comments"></i> Chat</a>
+        <a class="navbar-brand" onclick="checkAccess('community')"><i class="fas fa-users"></i> Comunidade</a>
+        <a class="navbar-brand" onclick="checkAccess('more')"><i class="fas fa-ellipsis-h"></i> Mais</a>
+    </nav>
+
+    <script>
+        let isPremium = false;
+        let currentRating = 0;
+        let currentRaio = 5;
+        let currentProfileId = 1;
+        let hasEntered = false;
+
+        const profiles = {
+            1: {
+                nome: "Maria",
+                idade: 28,
+                interesses: "Leitura, Cinema, Viagens",
+                hobbies: "Pintura, Dança, Culinária",
+                preza: "Lealdade, Companheirismo, Diversão",
+                ratings: [4, 5, 4],
+                isFriend: false
+            },
+            2: {
+                nome: "Ana",
+                idade: 25,
+                interesses: "Música, Esportes, Fotografia",
+                hobbies: "Yoga, Corrida, Tocar violão",
+                preza: "Sinceridade, Respeito, Apoio",
+                ratings: [3, 4, 5],
+                isFriend: false
+            },
+            3: {
+                nome: "Clara",
+                idade: 30,
+                interesses: "Arte, Natureza, Tecnologia",
+                hobbies: "Desenho, Caminhadas, Programação",
+                preza: "Empatia, Criatividade, Confiança",
+                ratings: [2, 3, 2],
+                isFriend: false
+            },
+            4: {
+                nome: "Joana",
+                idade: 27,
+                interesses: "Culinária, Viagens, Literatura",
+                hobbies: "Cozinhar, Ler, Viajar",
+                preza: "Alegria, Companheirismo, Honestidade",
+                ratings: [5, 5, 4],
+                isFriend: false
+            },
+            5: {
+                nome: "Sofia",
+                idade: 29,
+                interesses: "Moda, Beleza, Dança",
+                hobbies: "Maquiagem, Dançar, Compras",
+                preza: "Autenticidade, Diversão, Carinho",
+                ratings: [4, 3, 4],
+                isFriend: false
+            },
+            6: {
+                nome: "Lúcia",
+                idade: 32,
+                interesses: "Jardinagem, Meditação, Escrita",
+                hobbies: "Cuidar de plantas, Meditar, Escrever",
+                preza: "Paz, Gentileza, Compreensão",
+                ratings: [1, 2, 2],
+                isFriend: false
+            },
+            7: {
+                nome: "Beatriz",
+                idade: 26,
+                interesses: "Fotografia, Viagens, Arte",
+                hobbies: "Fotografar, Viajar, Pintar",
+                preza: "Criatividade, Lealdade, Aventura",
+                ratings: [4, 5, 5],
+                isFriend: true
+            },
+            8: {
+                nome: "Fernanda",
+                idade: 31,
+                interesses: "Culinária, Leitura, Yoga",
+                hobbies: "Cozinhar, Ler, Praticar yoga",
+                preza: "Paciência, Apoio, Sinceridade",
+                ratings: [3, 4, 4],
+                isFriend: true
+            }
+        };
+
+        function showTela(telaId) {
+            document.querySelectorAll('.tela').forEach(tela => {
+                tela.classList.remove('active');
+            });
+            document.getElementById(telaId).classList.add('active');
+            window.scrollTo(0, 0);
+
+            const navbar = document.getElementById('navbar');
+            if (telaId === 'welcome' || telaId === 'register') {
+                navbar.style.display = 'none';
+                hasEntered = false;
+            } else {
+                hasEntered = true;
+                navbar.style.display = 'flex';
+            }
+
+            document.getElementById('raio-desabafo').innerText = `${currentRaio}km`;
+            document.getElementById('raio-lifesaver').innerText = `${currentRaio}km`;
+        }
+
+        function showProfile(profileId) {
+            currentProfileId = profileId;
+            const profile = profiles[profileId];
+            const isFriend = profile.isFriend;
+
+            if (!isFriend) {
+                document.getElementById('profile-nome').style.display = 'none';
+                document.getElementById('profile-foto').style.display = 'none';
+                document.getElementById('profile-hobbies').style.display = 'none';
+                document.getElementById('profile-preza').style.display = 'none';
+            } else {
+                document.getElementById('profile-nome').style.display = 'block';
+                document.getElementById('profile-foto').style.display = 'block';
+                document.getElementById('profile-hobbies').style.display = 'block';
+                document.getElementById('profile-preza').style.display = 'block';
+                document.getElementById('profile-nome-text').innerText = profile.nome;
+                document.getElementById('profile-hobbies-text').innerText = profile.hobbies;
+                document.getElementById('profile-preza-text').innerText = profile.preza;
+            }
+
+            document.getElementById('profile-idade').innerText = profile.idade;
+            document.getElementById('profile-interesses').innerText = profile.interesses;
+
+            const average = (profile.ratings.reduce((a, b) => a + b, 0) / profile.ratings.length).toFixed(1);
+            document.getElementById('rating-average-text').innerText = average;
+
+            const lowRatingMessage = document.getElementById('low-rating-message');
+            if (average < 3) {
+                lowRatingMessage.style.display = 'block';
+            } else {
+                lowRatingMessage.style.display = 'none';
+            }
+
+            showTela('profile');
+        }
+
+        function updateRaio() {
+            const raioSelect = document.getElementById('raio-select').value;
+            if (raioSelect !== '5' && !isPremium) {
+                alert('Você precisa ser uma usuária Premium para ajustar o raio!');
+                document.getElementById('raio-select').value = '5';
+                document.getElementById('raio').innerText = '5km (Gratuito)';
+                currentRaio = 5;
+            } else {
+                document.getElementById('raio').innerText = `${raioSelect}km ${raioSelect === '5' ? '(Gratuito)' : '(Premium)'}`;
+                currentRaio = parseInt(raioSelect);
+            }
+            document.getElementById('raio-desabafo').innerText = `${currentRaio}km`;
+            document.getElementById('raio-lifesaver').innerText = `${currentRaio}km`;
+        }
+
+        function sendMessage() {
+            if (!isPremium) {
+                alert('Sua mensagem foi enviada por e-mail. Torne-se Premium para usar o chat direto!');
+            } else {
+                alert('Mensagem enviada diretamente no chat!');
+            }
+        }
+
+        function upgradeToPremium() {
+            isPremium = true;
+            document.getElementById('chat-status').innerText = 'Você é uma usuária Premium! Envie mensagens diretamente.';
+            alert('Parabéns! Você agora é uma usuária Premium.');
+        }
+
+        function rateFriend(rating) {
+            currentRating = rating;
+            const lipsticks = document.querySelectorAll('.rating i');
+            lipsticks.forEach((lipstick, index) => {
+                if (index < rating) {
+                    lipstick.classList.add('filled');
+                } else {
+                    lipstick.classList.remove('filled');
+                }
+            });
+            profiles[currentProfileId].ratings.push(rating);
+            const average = (profiles[currentProfileId].ratings.reduce((a, b) => a + b, 0) / profiles[currentProfileId].ratings.length).toFixed(1);
+            document.getElementById('rating-average-text').innerText = average;
+
+            const lowRatingMessage = document.getElementById('low-rating-message');
+            if (average < 3) {
+                lowRatingMessage.style.display = 'block';
+            } else {
+                lowRatingMessage.style.display = 'none';
+            }
+
+            alert('Avaliação enviada anonimamente! A pessoa avaliada não verá sua pontuação.');
+        }
+
+        function checkAnonimo() {
+            const anonimoCheckbox = document.getElementById('anonimo');
+            if (anonimoCheckbox.checked && !isPremium) {
+                alert('Você precisa ser uma usuária Premium para postar anonimamente!');
+                anonimoCheckbox.checked = false;
+            }
+        }
+
+        function postConfession() {
+            const anonimo = document.getElementById('anonimo').checked;
+            if (anonimo && !isPremium) {
+                alert('Você precisa ser uma usuária Premium para postar anonimamente!');
+                return;
+            }
+            alert(`Desabafo enviado ${anonimo ? 'anonimamente' : 'com seu nome'} para mulheres no raio de ${currentRaio}km!`);
+        }
+
+        function postToFeed() {
+            alert('Post enviado! Será revisado antes de ser publicado.');
+        }
+
+        function scheduleSession() {
+            alert('Sessão agendada! Uma profissional entrará em contato em breve.');
+        }
+
+        function sendLifesaverAlert() {
+            alert(`Alerta de emergência enviado para amigas no raio de ${currentRaio}km!`);
+        }
+
+        function submitReport() {
+            alert('Denúncia enviada anonimamente! Nossa equipe irá revisar.');
+        }
+
+        function checkAccess(telaId) {
+            const profile = profiles[currentProfileId];
+            const averageRating = profile.ratings.reduce((a, b) => a + b, 0) / profile.ratings.length;
+            if (averageRating < 3 && telaId !== 'map' && telaId !== 'profile' && telaId !== 'friend-request') {
+                alert('Sua avaliação é inferior a 3 estrelas. Você só pode acessar funcionalidades básicas (fazer novas amizades). Melhore sua avaliação para desbloquear mais recursos!');
+                return;
+            }
+            showTela(telaId);
+        }
+
+        function scheduleMeetup() {
+            const profile = profiles[currentProfileId];
+            const averageRating = profile.ratings.reduce((a, b) => a + b, 0) / profile.ratings.length;
+            if (averageRating < 3) {
+                alert('Você precisa de uma avaliação mínima de 3 estrelas para criar ou participar de encontros!');
+                return;
+            }
+            alert('Encontro criado com sucesso! Suas amigas foram convidadas e podem convidar outras amigas.');
+        }
+    </script>
+</body>
+</html>
